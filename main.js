@@ -11,6 +11,7 @@ function startDigitalClock() {
 
 }
 
+
 function updateDigitalClock() {
     const date = new Date();
 
@@ -23,11 +24,15 @@ function updateDigitalClock() {
 function updateDigitalTime(date) {
     let hours = date.getHours();
     let minutes = date.getMinutes();
-    let sceonds = date.getSeconds();
+    let seconds = date.getSeconds();
+
+    hours = formatDateValue(hours);
+    minutes = formatDateValue(minutes);
+    seconds = formatDateValue(seconds);
     
     // Fetch id from HTML.
     const currentTime = document.getElementById("time");
-    currentTime.innerText = hours + ":" + minutes + ":" + sceonds;
+    currentTime.innerText = hours + ":" + minutes + ":" + seconds;
 }
 
 function updateDigitalWeekday(date) {
@@ -73,4 +78,12 @@ function getCurretnMonth(date) {
         case 10: return prefix + 'November';
         case 11: return prefix + 'December';
     }
+}
+
+// Adding a zero next to every number between 1 - 9.
+function formatDateValue(value) {
+    if (value < 10) {
+        return '0' + value;
+    }
+    return value;
 }
